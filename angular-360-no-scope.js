@@ -47,6 +47,7 @@
 
       // Add a $scope.$watch passthrough onto the ctrlImpl's prototype (and
       // therefore onto the surrogate controller's prototype as well)
+      if (typeof ctrlImpl !== 'function') ctrlImpl = ctrlImpl[ctrlImpl.length - 1];
       ctrlImpl.prototype.$watch = function(watchExpression, listener, objectEquality) {
         if (angular.isFunction(watchExpression)) {
           watchExpression = angular.bind(instance, watchExpression);
